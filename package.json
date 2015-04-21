@@ -1,0 +1,29 @@
+{
+  "name": "UIRegression",
+  "version": "0.0.0",
+  "description": "Introduction to UI Regression Testing Workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/klamping/UIRegression.git"
+  },
+  "author": "Kevin Lamping",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klamping/UIRegression/issues"
+  },
+  "homepage": "https://github.com/klamping/UIRegression",
+  "devDependencies": {
+    "connect": "~3.2.0",
+    "gemini": "^0.10.0",
+    "http-auth": "~2.2.0",
+    "open": "0.0.5",
+    "passport": "^0.2.1",
+    "phantomcss": "~0.7.2",
+    "serve-static": "~1.6.2"
+  }
+}
