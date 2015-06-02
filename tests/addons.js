@@ -11,55 +11,62 @@ var client = require('webdriverio').remote({
 
 // initialise WebdriverCSS for `client` instance
 require('webdrivercss').init(client, {
-    screenshotRoot: 'tests/shots-4',
-    failedComparisonsRoot: 'tests/diffs-4',
+    screenshotRoot: 'tests/shots-5',
+    failedComparisonsRoot: 'tests/diffs-5',
     screenWidth: resolutions
 });
 
 client
     .init()
     .url('http://localhost:8080/add-ons.html')
-    .webdrivercss('nav menu icon', [
-      {
-        name: 'mobile',
-        elem: '#nav-primary-link',
-        screenWidth: resolutions.slice(0,2)
-      }
-    ])
-    .setViewportSize({
-        width: resolutions[0],
-        height: 300
-    })
-    .isVisible('#nav-primary-link', function (err, isVisible) {
-      if (isVisible) {
-        this.click('#nav-primary-link');
-        this.pause(1000);
-      }
-    })
-    .webdrivercss('nav', [
+    .webdrivercss('header', [
       {
         name: 'all',
-        elem: '#nav-primary'
+        elem: '.site-header',
+        exclude: ['#nav-primary', '#nav-primary-link']
       }
     ])
-    .moveToObject('#nav-primary a', 1, 1)
-    .webdrivercss('nav - hovered', [
-      {
-        name: 'all',
-        elem: '#nav-primary',
-        screenWidth: resolutions.slice(3,4)
-      }
-    ])
-    .webdrivercss('breadcrumbs', [
-      {
-        name: 'all',
-        elem: '.nav-breadcrumb'
-      }
-    ])
-    .webdrivercss('article header', [
-      {
-        name: 'all',
-        elem: '.article-header'
-      }
-    ])
+    // .webdrivercss('nav menu icon', [
+    //   {
+    //     name: 'mobile',
+    //     elem: '#nav-primary-link',
+    //     screenWidth: resolutions.slice(0,2)
+    //   }
+    // ])
+    // .setViewportSize({
+    //     width: resolutions[0],
+    //     height: 300
+    // })
+    // .isVisible('#nav-primary-link', function (err, isVisible) {
+    //   if (isVisible) {
+    //     this.click('#nav-primary-link');
+    //     this.pause(1000);
+    //   }
+    // })
+    // .webdrivercss('nav', [
+    //   {
+    //     name: 'all',
+    //     elem: '#nav-primary'
+    //   }
+    // ])
+    // .moveToObject('#nav-primary a', 1, 1)
+    // .webdrivercss('nav - hovered', [
+    //   {
+    //     name: 'all',
+    //     elem: '#nav-primary',
+    //     screenWidth: resolutions.slice(3,4)
+    //   }
+    // ])
+    // .webdrivercss('breadcrumbs', [
+    //   {
+    //     name: 'all',
+    //     elem: '.nav-breadcrumb'
+    //   }
+    // ])
+    // .webdrivercss('article header', [
+    //   {
+    //     name: 'all',
+    //     elem: '.article-header'
+    //   }
+    // ])
     .end();
