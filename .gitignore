@@ -1,2 +1,7 @@
 .DS_Store
 codekit-config.json
+
+# Avoid saving full screenshots and failed comparisons, but always save selector-based references.
+tests/diffs*/*
+tests/shots*/*
+!tests/shots*/*baseline*

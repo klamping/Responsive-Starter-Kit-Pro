@@ -9,9 +9,8 @@ var client = require('webdriverio').remote({
 
 // initialise WebdriverCSS for `client` instance
 require('webdrivercss').init(client, {
-    screenshotRoot: 'shots-1',
-    failedComparisonsRoot: 'diffs-1',
-    screenWidth: [320,480,700,900,1100]
+    screenshotRoot: 'tests/shots-2',
+    failedComparisonsRoot: 'tests/diffs-2',
 });
 
 client
@@ -19,8 +18,14 @@ client
     .url('http://localhost:8080/add-ons.html')
     .webdrivercss('primary nav', [
       {
-        name: 'all',
-        elem: '#nav-primary'
+        name: 'mobile',
+        elem: '#nav-primary-link',
+        screenWidth: [320,480]
+      },
+      {
+        name: 'desktop',
+        elem: '#nav-primary',
+        screenWidth: [700,900,1100]
       }
     ])
     .end();
