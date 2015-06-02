@@ -11,24 +11,43 @@ var client = require('webdriverio').remote({
 
 // initialise WebdriverCSS for `client` instance
 require('webdrivercss').init(client, {
-    screenshotRoot: 'tests/shots-3',
-    failedComparisonsRoot: 'tests/diffs-3',
+    screenshotRoot: 'tests/shots-4',
+    failedComparisonsRoot: 'tests/diffs-4',
     screenWidth: resolutions
 });
 
 client
     .init()
     .url('http://localhost:8080/add-ons.html')
-    .webdrivercss('primary nav', [
+    .webdrivercss('nav menu icon', [
       {
         name: 'mobile',
         elem: '#nav-primary-link',
         screenWidth: resolutions.slice(0,2)
-      },
+      }
+    ])
+    .setViewportSize({
+        width: resolutions[0],
+        height: 300
+    })
+    .isVisible('#nav-primary-link', function (err, isVisible) {
+      if (isVisible) {
+        this.click('#nav-primary-link');
+        this.pause(1000);
+      }
+    })
+    .webdrivercss('nav', [
       {
-        name: 'desktop',
+        name: 'all',
+        elem: '#nav-primary'
+      }
+    ])
+    .moveToObject('#nav-primary a', 1, 1)
+    .webdrivercss('nav - hovered', [
+      {
+        name: 'all',
         elem: '#nav-primary',
-        screenWidth: resolutions.slice(2)
+        screenWidth: resolutions.slice(3,4)
       }
     ])
     .webdrivercss('breadcrumbs', [
