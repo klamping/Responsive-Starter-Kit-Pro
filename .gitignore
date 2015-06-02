@@ -5,3 +5,5 @@ codekit-config.json
 tests/diffs*/*
 tests/shots*/*
 !tests/shots*/*baseline*
+
+tests/credentials.json
