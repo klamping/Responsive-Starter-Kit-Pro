@@ -1,5 +1,7 @@
 /*jshint node:true*/
 
+var resolutions = [320,480,700,900,1100];
+
 // create a WebdriverIO instance
 var client = require('webdriverio').remote({
     desiredCapabilities: {
@@ -9,8 +11,9 @@ var client = require('webdriverio').remote({
 
 // initialise WebdriverCSS for `client` instance
 require('webdrivercss').init(client, {
-    screenshotRoot: 'tests/shots-2',
-    failedComparisonsRoot: 'tests/diffs-2',
+    screenshotRoot: 'tests/shots-3',
+    failedComparisonsRoot: 'tests/diffs-3',
+    screenWidth: resolutions
 });
 
 client
@@ -20,12 +23,24 @@ client
       {
         name: 'mobile',
         elem: '#nav-primary-link',
-        screenWidth: [320,480]
+        screenWidth: resolutions.slice(0,2)
       },
       {
         name: 'desktop',
         elem: '#nav-primary',
-        screenWidth: [700,900,1100]
+        screenWidth: resolutions.slice(2)
+      }
+    ])
+    .webdrivercss('breadcrumbs', [
+      {
+        name: 'all',
+        elem: '.nav-breadcrumb'
+      }
+    ])
+    .webdrivercss('article header', [
+      {
+        name: 'all',
+        elem: '.article-header'
       }
     ])
     .end();
