@@ -2,40 +2,17 @@
 
 var resolutions = [320,480,700,900,1100];
 
-
-// Script assumes your BrowserStack creds are listed in JSON somewhere in your system.
-// Convenient if you want to avoid storing keys in VCS. If storing in VCS is ok, just make
-// config the object literal:
-//
-// {
-//   "browserstack": {
-//     "user": "MY_USER",
-//     "key": "MY_KEY"
-//   }
-// }
-//
-var config = require('./credentials.json');
-
 // create a WebdriverIO instance
 var client = require('webdriverio').remote({
-  desiredCapabilities: {
-    'browserstack.debug': 'true',
-    'browserstack.local': 'true',
-    os: 'Windows',
-    os_version: '7',
-    browser: 'ie',
-    browser_version: '9.0'
-  },
-  host: 'hub.browserstack.com',
-  port: 80,
-  user: config.browserstack.user,
-  key: config.browserstack.key
+    desiredCapabilities: {
+        browserName: 'firefox'
+    }
 });
 
 // initialise WebdriverCSS for `client` instance
 require('webdrivercss').init(client, {
-    screenshotRoot: 'tests/shots-6',
-    failedComparisonsRoot: 'tests/diffs-6',
+    screenshotRoot: 'tests/shots-7',
+    failedComparisonsRoot: 'tests/diffs-7',
     screenWidth: resolutions
 });
 
@@ -45,8 +22,7 @@ client
     .webdrivercss('header', [
       {
         name: 'all',
-        elem: '.site-header',
-        exclude: ['#nav-primary', '#nav-primary-link']
+        elem: '.site-header'
       }
     ])
     .webdrivercss('nav menu icon', [
